@@ -26,6 +26,7 @@ Bot have database, which is creating on start (`database.db`), and some cogs.
 > - To copy channel or guild id enable developer mode in settings, press right button on channel/guild/role/user/message and etc. and choose `Copy ID`
 
 >[!IMPORTANT]
+> **Config params**
 > - `guild_id` - your server id.
 > - `apps_channel_id` - id of moderator applications channel. Bot will send embed message and button for modal window.
 > - `apps_get_id` - id of channel where moderator applications sending after submitting.
