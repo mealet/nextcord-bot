@@ -1,7 +1,9 @@
 # Nextcord Bot
 <dev id="badges">
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.11-blue?style=flat"></a>
-  <a href="https://nextcord.dev/"><img src="https://img.shields.io/badge/Nextcord-Library-blue?style=flat"></a>
+  <a href="https://nextcord.dev/"><img src="https://img.shields.io/badge/Nextcord-library-blue?style=flat"></a>
+  <a href="https://docs.python.org/3/library/sqlite3.html"><img src="https://img.shields.io/badge/Sqlite3-library-blue?style=flat"></a>
+  <a href="https://docs.python.org/3/library/asyncio.html"><img src="https://img.shields.io/badge/Asyncio-library-blue?style=flat"></a>
 </dev>
 
 ## Description
