@@ -8,7 +8,7 @@
 
 ## Description
 This is a testing bot created to learn nextcord library, and test some new discord features.
-Bot have database, who's creating on start (`database.db`), and some cogs.
+Bot have database, which is creating on start (`database.db`), and some cogs.
 
 ## Features
 - Bot have database (`database.db`) with moderation logs
