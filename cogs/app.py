@@ -71,7 +71,7 @@ class App(commands.Cog):
         guild = self.bot.get_guild(config.guild_id)
         bans_list = cursor.fetchall()
         # printing current bans in console
-        print("Текущие баны:")
+        print("Current bans:")
         if len(bans_list) > 0:
             # if bans list is not empty starting for cycle
             for i in range(len(bans_list)):
@@ -91,22 +91,22 @@ class App(commands.Cog):
                             cursor.execute(f"DELETE FROM `bans` WHERE user_banned={user_b_id}") # deleting ban from current bans table
                             database.commit()
                         except nextcord.errors.NotFound:
-                            print(f"Бан ID:{str(current_id)} не найден") # if ban is not found printing it
+                            print(f"Ban ID:{str(current_id)} not found") # if ban is not found printing it
                     else:
                         print(
-                            f"{user_b.name} | {user_b_id} || Осталось секунд: {t_left.seconds} || Причина: {current_reason}") # printing user name, id, time left in seconds and reason
+                            f"{user_b.name} | {user_b_id} || Seconds left: {t_left.seconds} || Reason: {current_reason}") # printing user name, id, time left in seconds and reason
                         await asyncio.sleep(t_left.seconds)
                         try:
                             await guild.unban(user_b)
                             cursor.execute(f"DELETE FROM `bans` WHERE user_banned={user_b_id}") # deleting ban from current bans table
                             database.commit()
                         except nextcord.errors.NotFound:
-                            print(f"Бан ID:{str(current_id)} не найден") # if ban is not found printing it
+                            print(f"Ban ID:{str(current_id)} not found") # if ban is not found printing it
 
                 except:
-                    print(f"Ошибка с выводом бана (ID={current_id})") # error excepting
+                    print(f"Error with ban displaying (ID={current_id})") # error excepting
         else:
-            print("На текущий момент банов нет") # "There are no bans now"
+            print("There are no bans now")
 
 
     # kick logs slash command for tech admin
