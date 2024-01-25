@@ -28,7 +28,9 @@ Bot have database, which is creating on start (`database.db`), and some cogs.
 - Moderation commands have logs in database, you can check it by commands `mute_logs`, `kick_logs`, `ban_logs`
 
 ## Installation
-**Notes, tips, important, warnings, cautions:**
+Mini navigation: [Windows](README.md#Windows), [Linux](README.md#Linux), [Notes, Tips and etc.](README.md#Notes)
+
+### Notes
 
 > [!TIP]
 > - To open console in main directory find directory path at top and click on empty place, then write `cmd` and press enter.
