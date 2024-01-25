@@ -14,18 +14,29 @@ Bot have database, which is creating on start (`database.db`), and some cogs.
 - Bot have database (`database.db`) with moderation logs
 - Database creating on first bot start
 - Roles by selecting option from list in special channel | [roles.py](/cogs/roles.py)
+- You can add your custom roles to dropdown menu in config | [config.py](/config.py)
+> To add your role write your role in `roles` object like: `"role_custom_id": [role_id, "Role Description", "Label in list", "Emoji 👀"]`
+> Example:
+> ```
+> roles = {
+>   "games": [1183105489207304202, 'Search friends and teammates for games', "Games", "🎮"]
+> }
+> ```
+
 - Moderator applications created with modal windows | [applications.py](/cogs/applications.py)
 - Moderation commands "Ban", "Kick", "Mute" are in user dropdown menu item "Apps" | [app.py](/cogs/app.py)
 - Moderation commands have logs in database, you can check it by commands `mute_logs`, `kick_logs`, `ban_logs`
 
 ## Installation
-**Notes, tips, important, warnings, cautions:**
+Mini navigation: [Windows](README.md#Windows), [Linux](README.md#Linux), [Notes, Tips and etc.](README.md#Notes)
+
+### Notes
 
 > [!TIP]
 > - To open console in main directory find directory path at top and click on empty place, then write `cmd` and press enter.
 > - To copy channel or guild id enable developer mode in settings, press right button on channel/guild/role/user/message and etc. and choose `Copy ID`
 
->[!IMPORTANT]
+> [!IMPORTANT]
 > **Config params**
 > - `guild_id` - your server id.
 > - `apps_channel_id` - id of moderator applications channel. Bot will send embed message and button for modal window.

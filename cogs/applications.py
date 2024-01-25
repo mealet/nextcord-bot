@@ -10,6 +10,7 @@ class Applications(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
+        # Sending embed message with button on bot start
         _guild = self.bot.get_guild(config.guild_id)
         apps_channel = nextcord.utils.get(_guild.channels, id=config.apps_channel_id)
 
@@ -18,7 +19,10 @@ class Applications(commands.Cog):
         apps_embed.add_field(name="Требования", value="14 лет\nАдекватность\nСтрессоустойчивость", inline=False)
         apps_embed.set_image(url="https://media.giphy.com/media/gfm4EwaaCuonzi9gaX/giphy.gif")
 
+
+        # callback for button
         async def button_callback(inter):
+            # callback for modal window
             async def modal_callback(inter):
                 app_embed = nextcord.Embed(colour=nextcord.Colour.blue(), timestamp=datetime.now())
                 app_embed.add_field(name="Ваше имя", value=f"*{txt_input1.value}*", inline=False)
@@ -37,8 +41,11 @@ class Applications(commands.Cog):
 
                 apps_get_channel = nextcord.utils.get(inter.guild.channels, id=config.apps_get_id)
                 await apps_get_channel.send(embed=app_embed)
+                # sending to channel which id is in config.py
                 return await inter.response.send_message("Заявка отправлена", ephemeral=True)
 
+
+            # creating modal window and setting callback
             mdl = nextcord.ui.Modal(title="Заявка на модератора")
             txt_input1 = nextcord.ui.TextInput(label="Ваше имя", required=True, placeholder="Иван")
             txt_input2 = nextcord.ui.TextInput(label="Ваша дата рождения", required=True, placeholder="01.01.2001")
@@ -50,6 +57,8 @@ class Applications(commands.Cog):
 
             await inter.response.send_modal(mdl)
 
+
+        # creating button setting callback and adding view for it
         btn = nextcord.ui.Button(style=nextcord.ButtonStyle.green, label="Подать заявку", custom_id="do_app")
         btn.callback = button_callback
         _view = nextcord.ui.View(timeout=0)

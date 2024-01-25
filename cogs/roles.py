@@ -22,6 +22,9 @@ class Roles(commands.Cog):
                               value=roles_description)
         roles_embed.set_image(url="https://media.giphy.com/media/5tiNlHkA1WdUh3jRDW/giphy.gif")
 
+        # When bot starting this cog sending embed message with dropdown menu to special channel
+        # Channel id is in config.py
+
         async def dropdown_callback(inter: nextcord.Interaction):
             for v in dropdown.values:
                 current_role = nextcord.utils.get(inter.guild.roles, id=config.roles[v][0])
