@@ -3,6 +3,7 @@ from nextcord.ext import commands
 from fuzzywuzzy import fuzz
 import config
 from cogs import warnings
+import asyncio
 
 # russian list of bad words
 global bad_words
@@ -32,8 +33,6 @@ class BanWords(commands.Cog):
             if len(message.content) < 3:
                 pass
             else:
-                print(message.content.lower())
-                print(fuzz.partial_ratio(bad_words, message.content.lower()))
                 if fuzz.partial_ratio(bad_words, message.content.lower()) > 70:
                     await message.delete()
                     await message.channel.send(f"{message.author.mention} нельзя использовать запрещённые слова!", delete_after=4)
