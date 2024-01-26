@@ -22,10 +22,12 @@ Bot have database, which is creating on start (`database.db`), and some cogs.
 >   "games": [1183105489207304202, 'Search friends and teammates for games', "Games", "🎮"]
 > }
 > ```
-
+> 
 - Moderator applications created with modal windows | [applications.py](/cogs/applications.py)
 - Moderation commands "Ban", "Kick", "Mute" are in user dropdown menu item "Apps" | [app.py](/cogs/app.py)
 - Moderation commands have logs in database, you can check it by commands `mute_logs`, `kick_logs`, `ban_logs`
+- Chat auto-moderation detecting bad words in chat and warning. Moderation roles from config will not get warns | [banWords.py](/cogs/banWords.py)
+- Warning system with table in database. After 3 warnings user getting 120 mins mute. You can call `warns_update` and `warn_user` in any cog, or main module | [warnings.py](/cogs/warnings.py)
 
 ## Installation
 Mini navigation: [Windows](README.md#Windows), [Linux](README.md#Linux), [Notes, Tips and etc.](README.md#Notes)
@@ -43,6 +45,7 @@ Mini navigation: [Windows](README.md#Windows), [Linux](README.md#Linux), [Notes,
 > - `apps_get_id` - id of channel where moderator applications sending after submitting.
 > - `roles_channel_id` - id of channel where bot sending message embed and dropdown menu with roles.
 > - `roles` - roles for selecting from dropdown menu.
+> - `moderation_roles` - roles, which not getting warns by automod
 
 ### Windows
 First install python from official site.
