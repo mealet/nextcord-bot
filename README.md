@@ -40,7 +40,7 @@ Mini navigation: [Windows](README.md#Windows), [Linux](README.md#Linux), [Notes,
 > - To copy channel or guild id enable developer mode in settings, press right button on channel/guild/role/user/message and etc. and choose `Copy ID`
 
 > [!IMPORTANT]
-> **Config params**
+> **Config parameters**
 > - `guild_id` - your server id.
 > - `apps_channel_id` - id of moderator applications channel. Bot will send embed message and button for modal window.
 > - `apps_get_id` - id of channel where moderator applications sending after submitting.
