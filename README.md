@@ -28,6 +28,7 @@ Bot have database, which is creating on start (`database.db`), and some cogs.
 - Moderation commands have logs in database, you can check it by commands `mute_logs`, `kick_logs`, `ban_logs`
 - Chat auto-moderation detecting bad words in chat and warning. Moderation roles from config will not get warns | [banWords.py](/cogs/banWords.py)
 - Warning system with table in database. After 3 warnings user getting 120 mins mute. You can call `warns_update` and `warn_user` in any cog, or main module | [warnings.py](/cogs/warnings.py)
+- Bot have ticket system. After deleting ticket bot sending embed message with information and moving channel to "Closed tickets" category | [tickets.py](/cogs/tickets.py)
 
 ## Installation
 Mini navigation: [Windows](README.md#Windows), [Linux](README.md#Linux), [Notes, Tips and etc.](README.md#Notes)
@@ -45,7 +46,11 @@ Mini navigation: [Windows](README.md#Windows), [Linux](README.md#Linux), [Notes,
 > - `apps_get_id` - id of channel where moderator applications sending after submitting.
 > - `roles_channel_id` - id of channel where bot sending message embed and dropdown menu with roles.
 > - `roles` - roles for selecting from dropdown menu.
-> - `moderation_roles` - roles, which not getting warns by automod
+> - `moderation_roles` - roles, which not getting warns by automod.
+> - `tickets_roles` - roles, which getting access to tickets.
+> - `tickets_channel_id` - channel where sending embed message with button for create ticket.
+> - `tickets_category` - category, where creating tickets after pressing button
+> - `closed_tickets_category` - category, where closed tickets moving
 
 ### Windows
 First install python from official site.
