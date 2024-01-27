@@ -6,10 +6,9 @@ import config
 
 
 # function for update statistics
-async def statsUpdate(self, bot):
+async def statsUpdate(bot):
     # getting guild and category
-    self.bot = bot
-    guild = self.bot.get_guild(config.guild_id)
+    guild = bot.get_guild(config.guild_id)
     statsCategory = nextcord.utils.get(guild.categories, id=config.stats_category)
 
     # getting members and bots count
@@ -45,20 +44,22 @@ class ServerStats(commands.Cog):
     async def on_ready(self):
         await statsUpdate(bot=self.bot)
 
+    @commands.Cog.listener()
     async def on_member_join(self):
         await statsUpdate(bot=self.bot)
 
+    @commands.Cog.listener()
     async def on_member_remove(self):
-        await statsUpdate()
+        await statsUpdate(bot=self.bot)
 
 
-    @nextcord.slash_command(name="statsUpdate")
-    async def statsUpdate(self, inter):
+    @nextcord.slash_command(name="stats_update", guild_ids=[config.guild_id])
+    async def stats_update(self, inter):
         guild = self.bot.get_guild(config.guild_id)
         # checking if user is tech admin
         if nextcord.utils.get(guild.roles, id=config.tech_moderator_role) in inter.user.roles:
             # updating stats, sending logs to console and sending message
-            await statsUpdate()
+            await statsUpdate(bot=self.bot)
             print(f"[COGS][SERVERSTATS]: {inter.user.name} has updated server stats")
             await inter.response.send_message("Статистика сервера успешно обновлена!", ephemeral=True) # "Server stats successfuly updated!"
         else:
