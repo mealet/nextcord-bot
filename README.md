@@ -8,7 +8,11 @@
 
 ## 📧 | Description
 This is a testing bot created to learn nextcord library, and test some new discord features.
-Bot have database, which is creating on start (`database.db`), and some cogs.
+Bot have database, which is creating on start (`database.db`), and some cogs. You can use it for free, but bot created on russian language,
+so you must replace 70-80% strokes in code. I wrote translate to english in comments for you, but for other languages you need to use translator 👀.
+
+To start using bot first create application on [Discord Developer Portal](https://discord.com/developers/applications), select the name, picture and description for him.
+After that invite your application to your server and copy token. Where you have to past token I described in "Installation" paragraph.
 
 ## 👇 | Features
 - Bot have database (`database.db`) with moderation logs
