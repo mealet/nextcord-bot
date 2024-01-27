@@ -33,7 +33,7 @@ Bot have database, which is creating on start (`database.db`), and some cogs.
 ## 💫 | Installation
 Mini navigation: [Windows](README.md#Windows), [Linux](README.md#Linux), [Notes, Tips and etc.](README.md#Notes)
 
-### 👀 | Notes
+### Notes
 
 > [!TIP]
 > - To open console in main directory find directory path at top and click on empty place, then write `cmd` and press enter.
