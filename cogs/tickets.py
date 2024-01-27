@@ -1,5 +1,4 @@
 import asyncio
-
 import nextcord
 from nextcord.ext import commands
 from datetime import datetime
@@ -38,6 +37,8 @@ class Tickets(commands.Cog):
             # ticket embed
             ticket_embed = nextcord.Embed(colour=nextcord.Colour.red())
             ticket_embed.add_field(name=f"Тикет \"{ticket_channel.name}\"", value="Ваш тикет успешно создан, пожалуйста ожидайте пока модерация ответит вам.\nЗадавайте ваш вопрос чётко с указанием конкретной информацией (если таковая имеется).\nЕсли модератор ответил на ваш вопрос, или вы просто хотите закрыть тикет, нажмите на кнопку под сообщением")
+            # "Your ticket successfuly created, please wait moderation answer.\nAsk your question clearly with specific info (if you have it).\nIf moderator dont asking you, or you just wanna close ticket - press on a button under the message."
+
             ticket_embed.set_image(url="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzFsdXBycGp1MHJ1cmN0dzdwcnk2ZDV5aDRsYmRwd3h1Yjh0eWw5OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0HlNaQ6gWfllcjDO/giphy.gif")
 
             # remove button callback
@@ -46,8 +47,9 @@ class Tickets(commands.Cog):
 
                 close_embed = nextcord.Embed(colour=nextcord.Colour.red(), timestamp=datetime.now())
                 close_embed.add_field(name=f"{inter.user.name} закрыл тикет", value=f"Закрыл пользователь: {inter.user.mention}\nНазвание канала: {ticket_channel.name}\nСоздатель тикета: {roles_mention_str.split(' ')[0]}")
+                # name=f"{inter.user.name} closed ticket", value=f"User closed: {inter.user.mention}\nChannel name: {ticket_channel.name}\nTicket author: {roles_mention_str.split(' ')[0]}"
                 await ticket_channel.send(embed=close_embed)
-                await inter.response.send_message("Вы успешно закрыли тикет!", ephemeral=True)
+                await inter.response.send_message("Вы успешно закрыли тикет!", ephemeral=True) # You successfuly closed ticket!
                 await asyncio.sleep(1.5)
 
                 closed_tickets_category = nextcord.utils.get(guild.categories, id=config.closed_tickets_category)
@@ -61,7 +63,7 @@ class Tickets(commands.Cog):
                     await ticket_channel.set_permissions(c_role, send_messages=False, read_messages=False)
 
             # remove button
-            ticket_remove_button = nextcord.ui.Button(label="Закрыть тикет", style=nextcord.ButtonStyle.red, emoji="🗑️")
+            ticket_remove_button = nextcord.ui.Button(label="Закрыть тикет", style=nextcord.ButtonStyle.red, emoji="🗑️") # "Close ticket"
             ticket_remove_button.callback = ticket_remove_callback
             ticket_remove_view = nextcord.ui.View(timeout=0)
             ticket_remove_view.add_item(ticket_remove_button)

@@ -112,7 +112,7 @@ class App(commands.Cog):
     # kick logs slash command for tech admin
     @nextcord.slash_command(name="kick_logs")
     async def kick_logs(self, inter):
-        if nextcord.utils.get(inter.guild.roles, id=1197964731261132920) in inter.user.roles:
+        if nextcord.utils.get(inter.guild.roles, id=config.tech_moderator_role) in inter.user.roles:
             # creating embed
             logs_embed = nextcord.Embed(colour=nextcord.Colour.red())
             cursor.execute("SELECT * FROM `kicks_log`;")
@@ -133,7 +133,7 @@ class App(commands.Cog):
     # ban logs slash command for tech admin
     @nextcord.slash_command(name="ban_logs", guild_ids=[config.guild_id])
     async def current_bans(self, inter):
-        if nextcord.utils.get(inter.guild.roles, id=1197964731261132920) in inter.user.roles:
+        if nextcord.utils.get(inter.guild.roles, id=config.tech_moderator_role) in inter.user.roles:
             # creating embed
             logs_embed = nextcord.Embed(colour=nextcord.Colour.red())
             cursor.execute("SELECT * FROM `bans_log`;")
@@ -158,7 +158,7 @@ class App(commands.Cog):
     # current bans slash command for tech admin
     @nextcord.slash_command(name="bans", guild_ids=[config.guild_id])
     async def bans(self, inter):
-        if nextcord.utils.get(inter.guild.roles, id=1197964731261132920) in inter.user.roles:
+        if nextcord.utils.get(inter.guild.roles, id=config.tech_moderator_role) in inter.user.roles:
             # creating embed
             logs_embed = nextcord.Embed(colour=nextcord.Colour.red())
             cursor.execute("SELECT * FROM `bans`;")
@@ -349,7 +349,7 @@ class App(commands.Cog):
 
     @nextcord.slash_command(name="mute_logs")
     async def mute_logs(self, inter):
-        if nextcord.utils.get(inter.guild.roles, id=1197964731261132920) in inter.user.roles:
+        if nextcord.utils.get(inter.guild.roles, id=config.tech_moderator_role) in inter.user.roles:
             logs_embed = nextcord.Embed(colour=nextcord.Colour.red())
             cursor.execute("SELECT * FROM `mutes_log`;")
             b_list = cursor.fetchall()
