@@ -1,3 +1,4 @@
-/icons/
-/.idea/
-/README.md
+icons/
+.idea/
+README.md
+.gitignore
