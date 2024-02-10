@@ -217,7 +217,7 @@ class App(commands.Cog):
 
                 # sending ban embed and banning user
                 await inter.send(embed=ban_embed)
-                await member.ban(reason=ban_reason.value)
+                await member.ban(reason=ban_reason.value, delete_message_days=None)
 
                 # calculating date until user will banned
                 until_date = datetime.now() + timedelta(days=int(ban_days.value))
