@@ -1,4 +1,7 @@
-icons/
-.idea/
+/icons/
+/.idea/
 README.md
-.gitignore
+settings.env
+database.db
+/__pycache__
+/cogs/__pycache__
