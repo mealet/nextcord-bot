@@ -29,5 +29,4 @@ tickets_roles = [1200499542647386142, 1197964731261132920]
 tech_moderator_role = 1197964731261132920
 
 # params
-logs_on_startup_timer = 2
 bot_logger_message = f"{datetime.now().strftime('%d.%m.%Y %H:%M:%S')} nextcord-bot © by mealet\nhttps://github.com/mealet/nextcord-bot\n"
