@@ -39,7 +39,9 @@ if __name__ == "__main__":
         bot.run(os.environ.get("TOKEN"))
     
     finally:
+        # clearing console
         other.console_clear()
-
+        
+        # printing message and closing file
         print(f"{Style.BRIGHT}Nextcord-Bot © by mealet\nhttps://github.com/mealet/nextcord-bot{Style.RESET_ALL}\n\n")
         logs.close_logging_file(logs.log_file)
