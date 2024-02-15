@@ -2,9 +2,11 @@ import nextcord
 from nextcord.ext import commands
 from datetime import datetime
 from datetime import timedelta
+from colorama import Back, Fore, Style
 import config
 import sqlite3
 import asyncio
+from cogs import logs
 
 # connecting database
 database = sqlite3.connect("database.db")
@@ -71,7 +73,7 @@ class App(commands.Cog):
         guild = self.bot.get_guild(config.guild_id)
         bans_list = cursor.fetchall()
         # printing current bans in console
-        print("Current bans:")
+        logs._log(logs.log_file, "Current bans:")
         if len(bans_list) > 0:
             # if bans list is not empty starting for cycle
             for i in range(len(bans_list)):
@@ -91,9 +93,9 @@ class App(commands.Cog):
                             cursor.execute(f"DELETE FROM `bans` WHERE user_banned={user_b_id}") # deleting ban from current bans table
                             database.commit()
                         except nextcord.errors.NotFound:
-                            print(f"Ban ID:{str(current_id)} not found") # if ban is not found printing it
+                            logs._log(logs.log_file, f"Ban ID:{str(current_id)} not found") # if ban is not found printing it
                     else:
-                        print(
+                        logs._log(logs.log_file, 
                             f"{user_b.name} | {user_b_id} || Seconds left: {t_left.seconds} || Reason: {current_reason}") # printing user name, id, time left in seconds and reason
                         await asyncio.sleep(t_left.seconds)
                         try:
@@ -101,12 +103,12 @@ class App(commands.Cog):
                             cursor.execute(f"DELETE FROM `bans` WHERE user_banned={user_b_id}") # deleting ban from current bans table
                             database.commit()
                         except nextcord.errors.NotFound:
-                            print(f"Ban ID:{str(current_id)} not found") # if ban is not found printing it
+                            logs._log(logs.log_file, f"Ban ID:{str(current_id)} not found") # if ban is not found printing it
 
                 except:
-                    print(f"Error with ban displaying (ID={current_id})") # error excepting
+                    logs._log(logs.log_file, f"Error with ban displaying (ID={current_id})") # error excepting
         else:
-            print("There are no bans now")
+            logs._log(logs.log_file, "There are no bans now")
 
 
     # kick logs slash command for tech admin
@@ -187,6 +189,11 @@ class App(commands.Cog):
             cursor.execute(f"DELETE FROM `bans` WHERE user_banned={int(user_id)}") # deleting user from table
             database.commit()
             await inter.response.send_message(f"Пользователь (<@{user_id}> | ID:{user_id}) разбанен", ephemeral=True) # sending message
+            # MID - Moderator ID
+            print(Back.RED + Fore.WHITE)
+            logs._log(logs.log_file, f"[COGS][APP] User ID:{user_id} unbanned")
+            print(Back.RESET + Fore.RESET)
+            
         else:
             await inter.response.send_message("Недостаточно прав", ephemeral=True)
 
@@ -219,6 +226,10 @@ class App(commands.Cog):
                 await inter.send(embed=ban_embed)
                 await member.ban(reason=ban_reason.value, delete_message_days=None)
 
+                print(Back.RED + Fore.WHITE)
+                logs._log(logs.log_file, f"[COGS][APP] User ID:{member.id} banned for {ban_days.value} days")
+                print(Back.RESET + Fore.RESET)
+
                 # calculating date until user will banned
                 until_date = datetime.now() + timedelta(days=int(ban_days.value))
 
@@ -233,10 +244,13 @@ class App(commands.Cog):
                 await asyncio.sleep(int(ban_days.value)*60*60*24)
                 try:
                     await member.unban()
+                    print(Back.RED + Fore.WHITE)
+                    logs._log(logs.log_file, f"[COGS][APP]User ID:{user_id} unbanned")
+                    print(Back.RESET + Fore.RESET)
                 except nextcord.errors.NotFound:
                     cursor.execute(f"SELECT ban_id FROM `bans` WHERE user_banned={member.id}")
                     current_ban_id = cursor.fetchall()
-                    print(f"Бан ID:{str(current_ban_id)} не найден")
+                    logs._log(logs.log_file, f"Ban ID:{str(current_ban_id)} not found")
                     cursor.execute(f"DELETE FROM `bans` WHERE user_banned={member.id}")
                     database.commit()
 
@@ -280,6 +294,11 @@ class App(commands.Cog):
                         url="https://cdn.icon-icons.com/icons2/2108/PNG/512/discord_icon_130958.png")
                 await inter.send(embed=kick_embed)
                 await member.kick(reason=kick_reason.value)
+
+                print(Back.RED + Fore.WHITE)
+                logs._log(logs.log_file, f"[COGS][APP]User ID:{member.id} kicked")
+                print(Back.RESET + Fore.RESET)
+
                 cursor.execute(
                     f"INSERT INTO kicks_log (user_kicked, reason, moderator, datetime) VALUES ({member.id}, '{kick_reason.value}', {inter.user.id}, '{datetime.now().strftime('%d.%m.%Y %H:%M')}');")
                 database.commit()
@@ -319,9 +338,17 @@ class App(commands.Cog):
 
                 await inter.send(embed=mute_embed)
                 await member.edit(timeout=nextcord.utils.utcnow() + timedelta(minutes=int(mute_time.value)))
-                cursor.execute(
-                    f"INSERT INTO `mutes_log` (user_muted, args, reason, moderator, datetime) VALUES ({member.id}, '{mute_time.value} mins', '{mute_reason.value}', '{inter.user.id}', '{datetime.now().strftime('%d.%m.%Y %H:%M')}')")
-                database.commit()
+
+                print(Back.RED + Fore.WHITE)
+                logs._log(logs.log_file, f"[COGS][APP] User ID:{member.id} muted for {mute_time.value} minutes")
+                print(Back.RESET + Fore.RESET)
+                
+                try:
+                    cursor.execute(
+                        f"INSERT INTO `mutes_log` (user_muted, args, reason, moderator, datetime) VALUES ({member.id}, '{mute_time.value} mins', '{mute_reason.value}', '{inter.user.id}', '{datetime.now().strftime('%d.%m.%Y %H:%M')}')")
+                    database.commit()
+                except:
+                    pass
 
 
             # creating modal
@@ -344,6 +371,9 @@ class App(commands.Cog):
             cursor.execute(
                 f"INSERT INTO `mutes_log` (user_muted, args, reason, moderator, datetime) VALUES ({member.id}, 'Unmute', 'Unmute', '{inter.user.id}', '{datetime.now().strftime('%d.%m.%Y %H:%M')}')")
             database.commit()
+            print(Back.RED + Fore.WHITE)
+            logs._log(logs.log_file, f"[COGS][APP] User ID:{member.id} unmuted")
+            print(Back.RESET + Fore.RESET)
         else:
             await inter.response.send_message("Недодстаточно прав", ephemeral=True)
 

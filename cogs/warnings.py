@@ -4,6 +4,7 @@ from datetime import timedelta
 from datetime import datetime
 import config
 import sqlite3
+from cogs import logs
 
 # database init
 db = sqlite3.connect('database.db')
@@ -18,7 +19,7 @@ c.execute("""CREATE TABLE IF NOT EXISTS `warns` (
 db.commit()
 
 async def warns_update(bot):
-    print("[COGS][WARNINGS] warns_update() called")
+    logs._log(logs.log_file, "[COGS][WARNINGS] warns_update() called")
     c.execute("SELECT * FROM `warns`")
     warns_list = c.fetchall()
     if len(warns_list) > 0:
@@ -35,10 +36,10 @@ async def warns_update(bot):
                     db.commit()
                     c.execute(f"UPDATE `warns` SET w_count=0 WHERE user_id={user_id}")
                     db.commit()
-                    print(f"[COGS][WARNINGS] User ID:{user_id} muted by AutoMod because warnings >= 3")
-                    print(f"[COGS][WARNINGS] Updated warns (w_count=0) for user ID:{user_id}")
+                    logs._logs(f"[COGS][WARNINGS] User ID:{user_id} muted by AutoMod because warnings >= 3")
+                    logs._log(f"[COGS][WARNINGS] Updated warns (w_count=0) for user ID:{user_id}")
                 except PermissionError:
-                    print(f"[COGS][WARNINGS] Permission error with muting {user_.name}. Removing warns...")
+                    logs._log(f"[COGS][WARNINGS] Permission error with muting {user_.name}. Removing warns...")
                     c.execute(f"UPDATE `warns` SET w_count=0 WHERE user_id={user_id}")
                     db.commit()
 
@@ -46,7 +47,7 @@ async def warns_update(bot):
         pass
 
 async def warn_user(user_id):
-    print(f"[COGS][WARNINGS] warn_user({user_id}) called")
+    logs._log(logs.log_file, f"[COGS][WARNINGS] warn_user({user_id}) called")
     c.execute(f"SELECT w_count FROM `warns` WHERE user_id={user_id}")
     current_warns = c.fetchall()
     if len(current_warns) > 0:

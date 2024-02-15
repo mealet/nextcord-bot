@@ -3,6 +3,9 @@ import nextcord
 from nextcord.ext import commands
 from datetime import datetime
 import config
+from cogs import logs
+import colorama
+from colorama import Back, Fore, Style
 
 # Note for me :)
 # datetime.now().strftime('%d.%m.%Y %H:%M')
@@ -27,6 +30,14 @@ class Tickets(commands.Cog):
         async def ticket_button_callback(inter):
             ticket_channel = await tickets_category.create_text_channel(f"{inter.user.name}-{datetime.now().strftime('%d_%m_%Y %H_%M_%S')}")
             await ticket_channel.set_permissions(inter.user, send_messages=True, read_messages=True)
+            
+            # CID - Channel ID
+            # AID - Author ID
+
+            print(Back.GREEN+Fore.WHITE)
+            logs._log(logs.log_file, f"[COGS][TICKETS][CID:{inter.channel.id}][AID:{inter.user.id}] {inter.user.name} created ticket.")
+            print(Back.RESET+Fore.RESET)
+
             roles_mention_str = ""
             roles_mention_str = roles_mention_str + f"{inter.user.mention} "
             for i in range(len(config.moderator_roles)):
@@ -44,7 +55,11 @@ class Tickets(commands.Cog):
             # remove button callback
             async def ticket_remove_callback(inter):
                 await ticket_channel.set_permissions(inter.user, send_messages=False)
-
+                print(Back.GREEN+Fore.WHITE)
+                print()
+                logs._log(logs.log_file, f"[COGS][TICKETS][CID:{inter.channel.id}][AID:{inter.user.id}] {inter.user.name} closed ticket.")
+                print()
+                print(Back.RESET+Fore.RESET)
                 close_embed = nextcord.Embed(colour=nextcord.Colour.red(), timestamp=datetime.now())
                 close_embed.add_field(name=f"{inter.user.name} закрыл тикет", value=f"Закрыл пользователь: {inter.user.mention}\nНазвание канала: {ticket_channel.name}\nСоздатель тикета: {roles_mention_str.split(' ')[0]}")
                 # name=f"{inter.user.name} closed ticket", value=f"User closed: {inter.user.mention}\nChannel name: {ticket_channel.name}\nTicket author: {roles_mention_str.split(' ')[0]}"

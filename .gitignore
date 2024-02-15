@@ -5,3 +5,4 @@ settings.env
 database.db
 /__pycache__
 /cogs/__pycache__
+/logs/*

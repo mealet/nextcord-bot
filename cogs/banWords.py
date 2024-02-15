@@ -15,8 +15,6 @@ class BanWords(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        # logging messages
-        print(f"[DISCORD][MESSAGE] {message.author.name}: {message.content}")
 
         # checking if user is moderator
         is_moderator = False
