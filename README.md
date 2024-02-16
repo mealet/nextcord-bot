@@ -4,12 +4,15 @@
   <a href="https://nextcord.dev/"><img src="https://img.shields.io/badge/Nextcord-library-blue?style=flat"></a>
   <a href="https://docs.python.org/3/library/sqlite3.html"><img src="https://img.shields.io/badge/Sqlite3-library-blue?style=flat"></a>
   <a href="https://docs.python.org/3/library/asyncio.html"><img src="https://img.shields.io/badge/Asyncio-library-blue?style=flat"></a>
+<a href=https://docker.com"><img src="https://img.shields.io/badge/Docker-engine-blue?style=flat"></a>
 </dev>
 
 ## 📧 | Description
 This is a testing bot created to learn nextcord library, and test some new discord features.
 Bot have database, which is creating on start (`database.db`), and some cogs. You can use it for free, but bot created on russian language,
 so you must replace 70-80% strokes in code. I wrote translate to english in comments for you, but for other languages you need to use translator 👀.
+
+Project licensed under the MIT License. Check [LICENSE](./LICENSE) file for details.
 
 To start using bot first create application on [Discord Developer Portal](https://discord.com/developers/applications), select the name, picture and description for him.
 After that invite your application to your server and copy token. Where you have to past token I described in "Installation" paragraph.
@@ -44,24 +47,26 @@ Mini navigation: [Windows](README.md#Windows), [Linux](README.md#Linux), [Notes,
 > - To copy channel or guild id enable developer mode in settings, press right button on channel/guild/role/user/message and etc. and choose `Copy ID`
 
 > [!IMPORTANT]
-> **Config parameters**
+> ### Config parameters
 > - `guild_id` - your server id.
-> - _Channels:_
+> - **_Channels:_**
 > - `apps_channel_id` - id of moderator applications channel. Bot will send embed message and button for modal window.
 > - `apps_get_id` - id of channel where moderator applications sending after submitting.
 > - `roles_channel_id` - id of channel where bot sending message embed and dropdown menu with roles.
 > - `tickets_channel_id` - channel where sending embed message with button for create ticket.
-> - _Categories:_
+> - **_Categories:_**
 > - `tickets_category` - category, where creating tickets after pressing button.
 > - `closed_tickets_category` - category, where closed tickets moving.
 > - `stats_category` - category, where bot creating voice channel to show statistics.
-> - _Roles:_
+> - **_Roles:_**
 > - `roles` - roles for selecting from dropdown menu.
 > - `moderation_roles` - roles, which not getting warns by automod.
 > - `tickets_roles` - roles, which getting access to tickets.
 > - `tech_moderator_role` - members with this role can get access to logs and statsUpdate.
+> - **_Params:_**
+> - `bot_logger_message` - message which writing in logs file on start
 
-### 🩵 | Windows
+### 🔵 | Windows
 First install python from official site.
 Download source code, unzip it to any place and open console in main directory.
 After you opened command prompt in main directory, write next commands:
@@ -78,7 +83,7 @@ When you a ready to start, type:
 python main.py
 ```
 
-### ❤️ | Linux
+### 🔴 | Linux
 Install some requirements
 ```
 sudo apt update & sudo apt upgrade
