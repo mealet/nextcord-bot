@@ -36,6 +36,8 @@ After that invite your application to your server and copy token. Where you have
 - Warning system with table in database. After 3 warnings user getting 120 mins mute. You can call `warns_update` and `warn_user` in any cog, or main module | [warnings.py](/cogs/warnings.py)
 - Bot have ticket system. After deleting ticket bot sending embed message with information and moving channel to "Closed tickets" category | [tickets.py](/cogs/tickets.py)
 - Bot showing server statistics by creating voice channels in category from config. | [serverStats.py](/cogs/serverStats.py)
+- Bot have manual logging system | [logs.py](/cogs/logs.py)
+- Logs saving into the log file in `/logs/` folder | [logs.py](/cogs/logs.py)
 
 ## 💫 | Installation
 Mini navigation: [Windows](README.md#Windows), [Linux](README.md#Linux), [Notes, Tips and etc.](README.md#Notes)
