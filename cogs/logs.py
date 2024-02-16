@@ -9,7 +9,7 @@ import os
 import other
 
 # init
-if len(os.listdir('./logs')) > 7:
+if len(os.listdir('./logs')) > 5:
     other.directory_clear("./logs")
 
 log_file = open(f"logs/log_{datetime.now().strftime('%d.%m.%Y_%H.%M.%S')}.txt", "a")
