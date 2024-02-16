@@ -67,9 +67,9 @@ Mini navigation: [Windows](README.md#Windows), [Linux](README.md#Linux), [Notes,
 > - `bot_logger_message` - message which writing in logs file on start
 
 ### 🔵 | Windows
-First install python from official site.
-Download source code, unzip it to any place and open console in main directory.
-After you opened command prompt in main directory, write next commands:
+1. Install Python from Official Site.
+2. Download bot's source code.
+3. Go to main directory and run commands:
 ```
 pip install -r requirements.txt
 ```
@@ -77,35 +77,35 @@ pip install -r requirements.txt
 echo TOKEN=*YOUR BOT TOKEN* > settings.env
 ```
 
-Now open `config.py` in any code editor (or notepad) and edit parameters.
-When you a ready to start, type:
+4. Open `comfig.py` and edit parameters for your server
+5. Run bot:
 ```
 python main.py
 ```
 
 ### 🔴 | Linux
-Install some requirements
+1. Install requirements:
 ```
 sudo apt update & sudo apt upgrade
 sudo apt install python3
 sudo apt install python3-pip
 apt install git
 ```
-Clone the repository
+2. Clone repository:
 ```
 git clone https://github.com/mealet/nextcord-bot.git
 ```
-Install pip requirements
+3. Install pip libraries
 ```
 cd nextcord-bot
 pip3 install -r requirements.txt
 ```
-Insert your token into enviroment
+4. Set your app token in environment:
 ```
 echo TOKEN=*YOUR BOT TOKEN* > settings.env
 ```
-Now open `config.py` in any code editor (or notepad) and edit parameters.
-When you a ready to start, type:
+5. Edit parameters for your server in `config.py`
+6.Run main script:
 ```
 python3 main.py
 ```
