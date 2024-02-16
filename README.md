@@ -112,8 +112,25 @@ echo TOKEN=*YOUR BOT TOKEN* > settings.env
 python3 main.py
 ```
 
+### 🟢 | Docker
+1. Install docker and docker volumes plugin.
+2. Clone repository and go to it's directory.
+3. Build image:
+```
+docker-compose build
+```
+4. Start it in the daemon mode:
+```
+docker-compose up -d
+```
+5. Check bot logs
+```
+docker-compose logs
+```
+
 ## 🔗 | Links
 - Python - https://www.python.org/
 - Nextcord Docs - https://docs.nextcord.dev/
 - Sqlite3 Docs - https://docs.python.org/3/library/sqlite3.html
 - Asyncio Docs - https://docs.python.org/3/library/asyncio.html
+- Docker - https://www.docker.com/
