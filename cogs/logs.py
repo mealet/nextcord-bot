@@ -38,7 +38,6 @@ class Logs(commands.Cog):
         # AID - Author ID
         print(Back.WHITE + Fore.BLACK + Style.DIM)
         _log(log_file, f"[MESSAGE][CID:{message.channel.id}][AID:{message.author.id}]: {message.content}")
-        _log(log_file, f"|----[COMPONENTS]: {len(message.components)} item(s)")
         _log(log_file, f"|----[ATTACHMENTS]: {message.attachments}")
         _log(log_file, f"|----[STICKERS]: {message.stickers}")
         print(Back.RESET + Fore.RESET + Style.RESET_ALL)
