@@ -35,6 +35,7 @@ After that invite your application to your server and copy token. Where you have
 - Chat auto-moderation detecting bad words in chat and warning. Moderation roles from config will not get warns | [banWords.py](/cogs/banWords.py)
 - Warning system with table in database. After 3 warnings user getting 120 mins mute. You can call `warns_update` and `warn_user` in any cog, or main module | [warnings.py](/cogs/warnings.py)
 - Bot have ticket system. After deleting ticket bot sending embed message with information and moving channel to "Closed tickets" category | [tickets.py](/cogs/tickets.py)
+- Ticket's transcription sending in channel and to user DM | [tickets.py](/cogs/tickets.py)
 - Bot showing server statistics by creating voice channels in category from config. | [serverStats.py](/cogs/serverStats.py)
 - Bot have manual logging system | [logs.py](/cogs/logs.py)
 - Logs saving into the log file in `/logs/` folder | [logs.py](/cogs/logs.py)
