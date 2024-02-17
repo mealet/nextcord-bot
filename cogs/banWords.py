@@ -20,22 +20,21 @@ class BanWords(commands.Cog):
         is_moderator = False
 
         for i in range(len(config.moderator_roles)):
-            if nextcord.utils.get(message.guild.roles, id=config.moderator_roles[i]) in message.author.roles:
-                is_moderator = True
-            else:
+            try:
+                if nextcord.utils.get(message.guild.roles, id=config.moderator_roles[i]) in message.author.roles:
+                    return
+        
+                if len(message.content) < 3:
+                    pass
+                else:
+                    if fuzz.partial_ratio(bad_words, message.content.lower()) > 70 or message.content.lower() in bad_words:
+                        await message.delete()
+                        await message.channel.send(f"{message.author.mention} нельзя использовать запрещённые слова!", delete_after=4)
+                        await warnings.warn_user(message.author.id)
+                        await warnings.warns_update(self.bot)
+            
+            except:
                 pass
-
-        if is_moderator:
-            pass
-        else:
-            if len(message.content) < 3:
-                pass
-            else:
-                if fuzz.partial_ratio(bad_words, message.content.lower()) > 70:
-                    await message.delete()
-                    await message.channel.send(f"{message.author.mention} нельзя использовать запрещённые слова!", delete_after=4)
-                    await warnings.warn_user(message.author.id)
-                    await warnings.warns_update(self.bot)
 
 
 def setup(bot):

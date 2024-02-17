@@ -223,36 +223,43 @@ class App(commands.Cog):
 
 
                 # sending ban embed and banning user
-                await inter.send(embed=ban_embed)
-                await member.ban(reason=ban_reason.value, delete_message_days=None)
-
-                print(Back.RED + Fore.WHITE)
-                logs._log(logs.log_file, f"[COGS][APP] User ID:{member.id} banned for {ban_days.value} days")
-                print(Back.RESET + Fore.RESET)
-
-                # calculating date until user will banned
-                until_date = datetime.now() + timedelta(days=int(ban_days.value))
-
-                # adding data to db tables
-                cursor.execute(f"INSERT INTO `bans` (user_banned, until, reason, moderator, datetime) VALUES ({member.id}, '{until_date.strftime('%d.%m.%Y')}', '{ban_reason.value}', '{inter.user.id}', '{datetime.now().strftime('%d.%m.%Y %H:%M')}')")
-                database.commit()
-                cursor.execute(
-                    f"INSERT INTO `bans_log` (user_banned, until, reason, moderator, datetime) VALUES ({member.id}, '{until_date.strftime('%d.%m.%Y')}', '{ban_reason.value}', '{inter.user.id}', '{datetime.now().strftime('%d.%m.%Y %H:%M')}')")
-                database.commit()
-
-                # waiting date and unbanning
-                await asyncio.sleep(int(ban_days.value)*60*60*24)
                 try:
-                    await member.unban()
+                    await inter.send(embed=ban_embed)
+                    await member.ban(reason=ban_reason.value, delete_message_days=None)
+                
+
                     print(Back.RED + Fore.WHITE)
-                    logs._log(logs.log_file, f"[COGS][APP]User ID:{user_id} unbanned")
+                    logs._log(logs.log_file, f"[COGS][APP] User ID:{member.id} banned for {ban_days.value} days")
                     print(Back.RESET + Fore.RESET)
-                except nextcord.errors.NotFound:
-                    cursor.execute(f"SELECT ban_id FROM `bans` WHERE user_banned={member.id}")
-                    current_ban_id = cursor.fetchall()
-                    logs._log(logs.log_file, f"Ban ID:{str(current_ban_id)} not found")
-                    cursor.execute(f"DELETE FROM `bans` WHERE user_banned={member.id}")
+
+                    # calculating date until user will banned
+                    until_date = datetime.now() + timedelta(days=int(ban_days.value))
+
+                    # adding data to db tables
+                    cursor.execute(f"INSERT INTO `bans` (user_banned, until, reason, moderator, datetime) VALUES ({member.id}, '{until_date.strftime('%d.%m.%Y')}', '{ban_reason.value}', '{inter.user.id}', '{datetime.now().strftime('%d.%m.%Y %H:%M')}')")
                     database.commit()
+                    cursor.execute(
+                        f"INSERT INTO `bans_log` (user_banned, until, reason, moderator, datetime) VALUES ({member.id}, '{until_date.strftime('%d.%m.%Y')}', '{ban_reason.value}', '{inter.user.id}', '{datetime.now().strftime('%d.%m.%Y %H:%M')}')")
+                    database.commit()
+
+                    # waiting date and unbanning
+                    await asyncio.sleep(int(ban_days.value)*60*60*24)
+                    try:
+                        await member.unban()
+                        print(Back.RED + Fore.WHITE)
+                        logs._log(logs.log_file, f"[COGS][APP]User ID:{user_id} unbanned")
+                        print(Back.RESET + Fore.RESET)
+                    except nextcord.errors.NotFound:
+                        cursor.execute(f"SELECT ban_id FROM `bans` WHERE user_banned={member.id}")
+                        current_ban_id = cursor.fetchall()
+                        logs._log(logs.log_file, f"Ban ID:{str(current_ban_id)} not found")
+                        cursor.execute(f"DELETE FROM `bans` WHERE user_banned={member.id}")
+                        database.commit()
+                
+                except PermissionError:
+                    await inter.send("Ошибка прав доступа", ephemeral=True)
+                except nextcord.errors.Forbidden:
+                    await inter.send("Ошибка на стороне сервера дискорда", ephemeral=True)
 
 
             # modal window
