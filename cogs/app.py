@@ -224,8 +224,8 @@ class App(commands.Cog):
 
                 # sending ban embed and banning user
                 try:
-                    await inter.send(embed=ban_embed)
                     await member.ban(reason=ban_reason.value, delete_message_days=None)
+                    await inter.send(embed=ban_embed)
                 
 
                     print(Back.RED + Fore.WHITE)
@@ -260,6 +260,8 @@ class App(commands.Cog):
                     await inter.send("Ошибка прав доступа", ephemeral=True)
                 except nextcord.errors.Forbidden:
                     await inter.send("Ошибка на стороне сервера дискорда", ephemeral=True)
+                except:
+                    await inter.send("Произошла неизвестная ошибка", ephemeral=True)
 
 
             # modal window
