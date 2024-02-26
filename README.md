@@ -122,6 +122,7 @@ python3 main.py
 systemctl start docker
 ```
 <sup>On windows just start _Docker Desktop_</sup>
+
 4. Build image:
 ```
 docker-compose build
