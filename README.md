@@ -114,17 +114,22 @@ python3 main.py
 ```
 
 ### 🟢 | Docker
-1. Install docker and docker volumes plugin.
+1. Install docker and docker compose plugin.
 2. Clone repository and go to it's directory.
-3. Build image:
+3. Run docker:
+```
+systemctl start docker
+```
+<sup>On windows just start _Docker Desktop_</sup>
+4. Build image:
 ```
 docker-compose build
 ```
-4. Start it in the daemon mode:
+5. Start it in the daemon mode:
 ```
 docker-compose up -d
 ```
-5. Check bot logs
+6. Check bot logs
 ```
 docker-compose logs
 ```
