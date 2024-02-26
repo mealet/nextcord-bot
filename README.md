@@ -98,16 +98,17 @@ apt install git
 ```
 git clone https://github.com/mealet/nextcord-bot.git
 ```
-3. Install pip libraries
+3. Install pip libraries:
 ```
 cd nextcord-bot
-pip3 install -r requirements.txt
+pip3 install -r requirements.txt.
 ```
 4. Set your app token in environment:
 ```
 echo TOKEN=*YOUR BOT TOKEN* > settings.env
 ```
-5. Edit parameters for your server in `config.py`
+5. Edit parameters for your server in `config.py`.
+
 6.Run main script:
 ```
 python3 main.py
