@@ -108,6 +108,7 @@ pip3 install -r requirements.txt.
 echo TOKEN=*YOUR BOT TOKEN* > settings.env
 ```
 5. Edit parameters for your server in `config.py`.
+
 6. Run main script:
 ```
 python3 main.py
