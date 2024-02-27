@@ -80,7 +80,7 @@ pip install -r requirements.txt
 echo TOKEN=*YOUR BOT TOKEN* > settings.env
 ```
 
-4. Open `comfig.py` and edit parameters for your server
+4. Open `comfig.py` and edit parameters for your server.
 5. Run bot:
 ```
 python main.py
@@ -131,7 +131,7 @@ docker-compose build
 ```
 docker-compose up -d
 ```
-6. Check bot logs
+6. Check bot logs:
 ```
 docker-compose logs
 ```
