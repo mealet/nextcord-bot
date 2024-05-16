@@ -52,21 +52,21 @@ Mini navigation: [Windows](README.md#Windows), [Linux](README.md#Linux), [Notes,
 > [!IMPORTANT]
 > ### Config parameters
 > - `guild_id` - your server id.
-> - **_Channels:_**
+>   **_Channels:_**
 > - `apps_channel_id` - id of moderator applications channel. Bot will send embed message and button for modal window.
 > - `apps_get_id` - id of channel where moderator applications sending after submitting.
 > - `roles_channel_id` - id of channel where bot sending message embed and dropdown menu with roles.
 > - `tickets_channel_id` - channel where sending embed message with button for create ticket.
-> - **_Categories:_**
+>   **_Categories:_**
 > - `tickets_category` - category, where creating tickets after pressing button.
 > - `closed_tickets_category` - category, where closed tickets moving.
 > - `stats_category` - category, where bot creating voice channel to show statistics.
-> - **_Roles:_**
+>   **_Roles:_**
 > - `roles` - roles for selecting from dropdown menu.
 > - `moderation_roles` - roles, which not getting warns by automod.
 > - `tickets_roles` - roles, which getting access to tickets.
 > - `tech_moderator_role` - members with this role can get access to logs and statsUpdate.
-> - **_Params:_**
+>   **_Params:_**
 > - `bot_logger_message` - message which writing in logs file on start
 
 ### 🔵 | Windows
@@ -80,7 +80,7 @@ pip install -r requirements.txt
 echo TOKEN=*YOUR BOT TOKEN* > settings.env
 ```
 
-4. Open `comfig.py` and edit parameters for your server.
+4. Open `config.py` and edit parameters for your server.
 5. Run bot:
 ```
 python main.py
