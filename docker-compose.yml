@@ -6,6 +6,6 @@ services:
     container_name: nextcord-bot
     command: python main.py
     ports:
-    - 80:80
+    - 3111:3111
     volumes:
       - ./:/app
